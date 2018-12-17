@@ -11,7 +11,7 @@
     "no-debugger": false,
     "no-console": false,
     "object-literal-sort-keys": false,
-    "strictNullChecks": false,
-    "interface-name": false
+    "interface-name": false,
+    "only-arrow-functions": false
   }
 }

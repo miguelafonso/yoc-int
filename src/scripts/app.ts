@@ -10,3 +10,5 @@ const config = new PageConfig({
 });
 
 main.fillAllElementsWidth(config.defaultConfig!.ipsum);
+
+main.initVideoAddControl();
