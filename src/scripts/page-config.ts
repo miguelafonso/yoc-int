@@ -1,6 +1,5 @@
 interface PageConfigType {
-        ipsum: string,
-        debounce: number
+        ipsum: string
   }
 
 export class PageConfig {

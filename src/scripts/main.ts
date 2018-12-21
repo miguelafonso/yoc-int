@@ -33,8 +33,7 @@ export class Main {
 
 
   fillAllElementsWidth(textToWrite: string) {
-    const elements = document.getElementsByClassName(this._classToSearch);    
-
+    const elements = document.getElementsByClassName(this._classToSearch);
     Object.keys(elements).forEach((key, value) => {
       const paragraph = document.createElement('p');
       paragraph.innerText = textToWrite.repeat(5);
@@ -55,16 +54,6 @@ export class Main {
     return {xPosition, yPosition};
   }
 
-
-  // when elem visible:
-  // width: 300 height: 455 top: 574.5 bottom 1029.5
-
-  // is it 50% visible? 455*.5 = 227.5
-
-  // for the element ot be 20% in view: 574.5 - 227,5 = 347
-
-  // when "top" reaches 347, the 50% have been achieved and play video (if the value decreases, stop video)
-
   getElementVisibilityData(elementClassName: string) {
       const element = document.getElementsByClassName(elementClassName)[0];
       const {height, top, bottom} = element.getBoundingClientRect();
@@ -79,19 +68,11 @@ export class Main {
       }
     }
 
-
     initVideoAddControl () {
 
-      // in view: height /2  <=> when y is height /2 -> 50 is visible
-      const all= this.getElementVisibilityData("video-airbnb");
-  
       window.addEventListener('scroll', this.debounce(() => {
-        console.log("1:", JSON.stringify(all));
         const a = document.getElementsByClassName("video-airbnb")[0];
-        console.log("MUAHAHHA ", JSON.stringify(a.getBoundingClientRect()));
-
         const {visible, height, top} = this.getElementVisibilityData("video-airbnb");
-      
         const videoElement = document.querySelector('video');
         const heightToPlay = this.videoConfiguration.playStopAt;
         const videoHeightTopBottomPlayPx= height * heightToPlay;
@@ -100,8 +81,6 @@ export class Main {
           if (!this.minimumVideoVisibilityPx) {
             this.minimumVideoVisibilityPx = Math.round(top - videoHeightTopBottomPlayPx);
           }
-
-          console.log(visible, height, top, this.minimumVideoVisibilityPx);
 
           if (top <= this.minimumVideoVisibilityPx && !this.isVideoPlaying(videoElement)) {
             if (!this.videoPlayingAsyncFlag) {
@@ -177,8 +156,6 @@ export class Main {
                   throw new Error(`Error ${error}` + error.message.includes("interact with the") ? "Must interact with page! https://goo.gl/xX8pDD" : "");
                 });
               }
-
-              // videoElement!.pause();
             }
         }
       }, 500));
